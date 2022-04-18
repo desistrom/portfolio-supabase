@@ -1,12 +1,12 @@
 import styled from '@emotion/styled';
 import tw from 'twin.macro';
 
-import { getProjects } from '~/lib/projects';
+import { fetchProjects } from '~/lib/projects';
 import { Layout } from '~/layouts';
 import { List } from '~/components';
 import { ListActionType } from '~/types';
 
-import type { GetServerSideProps } from 'next';
+import type { GetStaticProps } from 'next';
 
 import type { ListAction, Projects } from '~/types';
 
@@ -26,16 +26,25 @@ const ProjectIcon = styled.span(tw`
 	text-xl
 `);
 
-export const getServerSideProps: GetServerSideProps<ProjectProps> = async ({ res }) => {
-	res.setHeader('Cache-Control', 'public, max-age=3600, immutable');
+export const getStaticProps: GetStaticProps<ProjectProps> = async () => {
+	try {
+		const projects = await fetchProjects();
 
-	const projects = await getProjects();
-
-	return {
-		props: {
-			projects: JSON.stringify(projects),
-		},
-	};
+		return {
+			props: {
+				projects: JSON.stringify(projects),
+			},
+			revalidate: 900,
+		};
+	} catch (err) {
+		console.error('Request error', err);
+		return {
+			redirect: {
+				destination: '/error?status=500',
+				permanent: false,
+			},
+		};
+	}
 };
 
 export default function ProjectsPage({ projects: serialisedProjects }: ProjectProps) {
