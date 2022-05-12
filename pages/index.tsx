@@ -77,7 +77,7 @@ const ACTIONS: Array<NavigationItem> = [
 	{
 		type: NavigationItemType.LINK,
 		external: true,
-		href: 'https://github.com/nurodev',
+		href: 'https://github.com/desistrom',
 		icon: <ActionIcon icon="feather:github" />,
 		text: 'GitHub',
 	},
@@ -86,12 +86,13 @@ const ACTIONS: Array<NavigationItem> = [
 export default function HomePage() {
 	const { animations: animations } = usePersistantState().get();
 
+	const myName = 'Junaedi'
 	const today = new Date();
-	const birthday = new Date('1997-08-09');
+	const birthday = new Date('1998-01-11');
 	const age = differenceInYears(today, birthday);
 	const isBirthday = isSameDay(today, birthday) && isSameMonth(today, birthday);
 
-	const description = `I am a ${age} year old software engineer & games developer`;
+	const description = `I am a ${age} year old Fullstack Developer`;
 
 	return (
 		<Layout.Default>
@@ -101,13 +102,13 @@ export default function HomePage() {
 					{animations ? (
 						<Transition duration={1000}>
 							<Title>
-								Hey <Wave>👋</Wave> I&apos;m Ben, <LineBreak />a{' '}
+								Hey <Wave>👋</Wave> I&apos;m {myName}, <LineBreak />a{' '}
 								<StyledPill>developer</StyledPill>
 							</Title>
 						</Transition>
 					) : (
 						<Title>
-							Hey <Wave>👋</Wave> I&apos;m Ben, <LineBreak />a{' '}
+							Hey <Wave>👋</Wave> I&apos;m {myName}, <LineBreak />a{' '}
 							<StyledPill>developer</StyledPill>
 						</Title>
 					)}

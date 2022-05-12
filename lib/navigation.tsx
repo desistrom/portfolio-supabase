@@ -46,14 +46,14 @@ const staticMenuItems: Array<Array<NavigationItem>> = [
 			type: NavigationItemType.LINK,
 			icon: 'feather:twitter',
 			text: 'Twitter',
-			href: 'https://twitter.com/nurodev',
+			href: 'https://twitter.com/junaediart',
 			external: true,
 		},
 		{
 			type: NavigationItemType.LINK,
 			icon: 'feather:github',
 			text: 'GitHub',
-			href: 'https://github.com/nurodev',
+			href: 'https://github.com/desistrom',
 			external: true,
 		},
 	],
@@ -76,20 +76,20 @@ export function useNavigation() {
 		...staticMenuItems,
 		...(!loading && status
 			? [
-					[
-						{
-							type: NavigationItemType.LINK,
-							icon: (
-								<Status.Indicator
-									color={color}
-									pulse={status.discord_status !== 'offline'}
-								/>
-							),
-							text: 'Status',
-							href: '/status',
-						} as NavigationItem,
-					],
-			  ]
+				[
+					{
+						type: NavigationItemType.LINK,
+						icon: (
+							<Status.Indicator
+								color={color}
+								pulse={status.discord_status !== 'offline'}
+							/>
+						),
+						text: 'Status',
+						href: '/status',
+					} as NavigationItem,
+				],
+			]
 			: []),
 	];
 

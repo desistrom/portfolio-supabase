@@ -18,13 +18,14 @@ let redis;
  * @TODO Switch to v3 API using GraphQL to save over-fetching
  */
 async function fetchProjects(): Promise<Projects | null> {
-	const response = await fetch('https://api.github.com/users/nurodev/repos', {
+	const response = await fetch('https://api.github.com/users/desistrom/repos', {
 		headers: {
 			...(process.env.GITHUB_PAT && {
 				authorization: `token ${process.env.GITHUB_PAT}`,
 			}),
 		},
 	});
+	console.log(response);
 	if (response.status !== 200) {
 		const json = (await response.json()) as {
 			documentation_url: string;
@@ -97,6 +98,8 @@ export async function getProjects(): Promise<Projects | Redirect> {
 		if (cache !== null) return JSON.parse(cache) as Projects;
 
 		const projects = await fetchProjects();
+		console.log(projects);
+
 
 		redis.set('projects', JSON.stringify(projects));
 

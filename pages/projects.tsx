@@ -42,7 +42,7 @@ export default function ProjectsPage({ projects: serialisedProjects }: ProjectPr
 	const projects = JSON.parse(serialisedProjects) as Projects;
 
 	return (
-		<Layout.Default seo={{ title: 'nuro ─ projects' }}>
+		<Layout.Default seo={{ title: 'Junae.id ─ projects' }}>
 			<Container>
 				<Content>
 					<List.Container
@@ -51,24 +51,24 @@ export default function ProjectsPage({ projects: serialisedProjects }: ProjectPr
 								actions={[
 									...(project.post
 										? [
-												{
-													type: ListActionType.LINK,
-													external: false,
-													href: project.post,
-													icon: 'feather:edit-3',
-													label: `Blog post about ${project.name}`,
-												} as ListAction,
-										  ]
+											{
+												type: ListActionType.LINK,
+												external: false,
+												href: project.post,
+												icon: 'feather:edit-3',
+												label: `Blog post about ${project.name}`,
+											} as ListAction,
+										]
 										: []),
 									...(project.homepage
 										? [
-												{
-													type: ListActionType.LINK,
-													href: project.homepage,
-													icon: 'feather:home',
-													label: `${project.name} homepage`,
-												} as ListAction,
-										  ]
+											{
+												type: ListActionType.LINK,
+												href: project.homepage,
+												icon: 'feather:home',
+												label: `${project.name} homepage`,
+											} as ListAction,
+										]
 										: []),
 									{
 										type: ListActionType.LINK,
